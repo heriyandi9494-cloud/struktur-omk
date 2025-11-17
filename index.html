@@ -1,192 +1,210 @@
-<!-- ORG CHART OMK - Copy paste ke body HTML -->
-<section class="org-container">
-  <div class="org-chart">
-    <div class="node board">
-      <div class="role">Pembina Paroki</div>
-      <div class="name">(𝐏𝐚𝐬𝐭𝐨𝐫 𝐏𝐞𝐭𝐫𝐮𝐬 𝐀𝐠𝐚, 𝐂𝐏)</div>
-    </div>
-
-    <div class="level">
-      <div class="node advisor">
-        <div class="role">Penasehat</div>
-        <div class="name">𝐇𝐞𝐫𝐢</div>
-      </div>
-
-      <div class="node top">
-        <div class="role">Ketua Umum</div>
-        <div class="name">𝐀𝐧𝐝𝐫𝐞</div>
-      </div>
-    </div>
-
-    <div class="level">
-      <div class="node small">
-        <div class="role">Wakil Ketua</div>
-        <div class="name">𝐌𝐚𝐫𝐬𝐢𝐚 𝐑𝐢𝐬𝐦𝐚</div>
-      </div>
-
-      <div class="node small">
-        <div class="role">Sekretaris</div>
-        <ul class="sub">
-          <li>𝐆𝐥𝐨𝐫𝐢𝐚 𝐉𝐮𝐦𝐢</li>
-          <li>𝐀𝐠𝐮𝐬𝐭𝐢𝐫𝐚 𝐉𝐞𝐧𝐧𝐲</li>
-        </ul>
-      </div>
-
-      <div class="node small">
-        <div class="role">Bendahara</div>
-        <ul class="sub">
-          <li>𝐁𝐮𝐧𝐠𝐚 𝐀𝐠𝐧𝐞𝐬 𝐌𝐚𝐫𝐢𝐚</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="level grid">
-      <div class="node box">
-        <div class="role">Bidang Liturgi</div>
-        <div class="name">𝐈𝐤𝐧𝐚𝐬𝐢𝐮𝐬 𝐊𝐚𝐫𝐥𝐨 𝐏𝐮𝐭𝐫𝐚</div>
-      </div>
-
-      <div class="node box">
-        <div class="role">Bidang Pembinaan & Rohani</div>
-        <div class="name">𝐑𝐢𝐚𝐧 𝐕𝐞𝐥𝐞𝐧𝐭𝐢𝐧𝐮𝐬</div>
-      </div>
-
-      <div class="node box">
-        <div class="role">Bidang Sosial & Pelayanan</div>
-        <div class="name">𝐏𝐚𝐮𝐥𝐮𝐬 𝐓𝐨𝐧𝐨</div>
-      </div>
-
-      <div class="node box">
-        <div class="role">Bidang Kreativitas & Kesenian</div>
-        <div class="name">𝐒𝐮𝐩𝐢𝐥𝐚𝐧𝐠</div>
-      </div>
-
-      <div class="node box">
-        <div class="role">Bidang Humas & Media</div>
-        <div class="name">𝐘𝐮𝐝𝐢 𝐰𝐚𝐧𝐭𝐨𝐫𝐨</div>
-      </div>
-
-      <div class="node box">
-        <div class="role">Bidang Kaderisasi & Keanggotaan</div>
-        <div class="name">𝐇𝐞𝐧𝐠𝐤𝐢 𝐀𝐥𝐛𝐢𝐧𝐮𝐬</div>
-      </div>
-    </div>
-    </div>
-  </div>
-</section>
-
-<style>
-/* CONTAINER UTAMA */
-.org-container { 
-  padding: 20px; 
-  display:flex; 
-  justify-content:center; 
-}
-.org-chart { 
-  width: 100%; 
-  max-width: 1100px; 
-  font-family: "Segoe UI", Arial, sans-serif; 
-  text-align:center; 
-}
-
-/* NODE / BOX */
-.node {
-  background: #6784e3;
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Struktur OMK Sekonau</title>
+  <style>
+    :root{--bg:#2eef08;--card:#0ede0e;--accent:#250ef7;--text:#e0e7ef;--muted:#9fb0c8}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system,Segoe UI, Roboto, "Helvetica Neue", Arial;background:linear-gradient(180deg,#15cd0c 0%,#030d43 100%);color:var(--text);padding:28px}
+    .wrap{max-width:1100px;margin:0 auto}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+    header .logo{width:64px;height:64px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#6ee7b7);display:flex;align-items:center;justify-content:center;font-weight:700;color:#d4e2f0}
+    header h1{font-size:20px;margin:0}
+    header p{margin:0;color:var(--muted);font-size:13px}
+    .card {
+  display: flex;              /* Menjadikan card flex */
+  align-items: center;        /* Vertikal center */
+  gap: 12px;                  /* Jarak antara foto & teks */
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 14px 18px;
   border-radius: 12px;
-  padding: 12px 16px;
-  box-shadow: 0 6px 18px rgba(3, 247, 11, 0.08);
-  border: 1px solid rgba(20,40,80,0.06);
-  display:inline-block;
-  min-width: 180px;
-  margin: 12px;
-  transition: .3s ease;
-}
-.node .role { 
-  font-weight:700; 
-  color:#27fde4; 
-  letter-spacing:0.4px;
-  font-size: 15px;
-}
-.node .name { 
-  font-size:14px; 
-  color:#161515; 
-  margin-top:6px; 
-}
-.node .sub { 
-  margin:8px 0 0; 
-  padding-left:18px; 
-  text-align:left; 
-  font-size:13px; 
-  color:#333; 
+  min-width: 220px;
+  max-width: 320px;
+  text-align: center;           /* Teks rata kiri */
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+  transition: transform .18s ease, box-shadow .18s ease;
 }
 
-/* LEVEL */
-.level { 
-  display:flex; 
-  flex-wrap:wrap; 
-  justify-content:center; 
-  margin-top:18px; 
-  gap:12px; 
-  align-items:flex-start; 
-}
-.level.grid { 
-  justify-content:space-between; 
-  gap:14px; 
+.card img {
+  width: 48px;                /* Ukuran foto */
+  height: 48px;
+  border-radius: 50%;         /* Bulat */
+  object-fit: cover;          /* Agar proporsional */
+  flex-shrink: 0;             /* Tidak mengecil */
 }
 
-/* VARIASI NODE */
-.node.board { 
-  background: linear-gradient(90deg,#025fd8,#3b8dea); 
-  border:1px solid rgba(237, 239, 242, 0.08); 
-  min-width:260px;
-}
-.node.top { 
-  background:#577ae3; 
-  border:1px solid rgba(237, 11, 11, 0.08);
-}
-.node.box { 
-  min-width:200px; 
-  max-width:230px; 
-  text-align:center; 
+.card .text {
+  display: flex;
+  flex-direction: column;
 }
 
-/* --- MOBILE RESPONSIVE --- */
-@media (max-width:900px){
-  .node { 
-    min-width: 85%; 
-    max-width: 420px;
-    font-size: 14px;
-  }
+    /* chart / org container */
+    .org{display:flex;flex-direction:column;gap:18px}
+    .org-row{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
 
-  .node .role { 
-    font-size: 15px;
-  }
+    .card{background:linear-gradient(180deg, rgba(234, 6, 6, 0.02), rgba(221, 7, 7, 0.01));border:1px solid rgba(255,255,255,0.04);padding:14px 18px;border-radius:12px;min-width:220px;max-width:320px;text-align:center;box-shadow:0 6px 18px rgba(2,6,23,0.6);transition:transform .18s ease, box-shadow .18s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2, 46, 242, 0.7)}
+    .role{font-weight:700;font-size:15px}
+    .name{display:block;margin-top:6px;font-size:13px;color:var(--muted)}
+    .small{font-size:12px;color:var(--muted);margin-top:8px}
 
-  .node .name, .node .sub {
-    font-size: 14px;
-  }
+    /* specialized lists */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    ul{padding-left:16px;margin:8px 0 0 0;text-align:left}
+    li{margin:6px 0;color:var(--muted);font-size:14px}
 
-  .level.grid { 
-    flex-direction:column; 
-    align-items:center;
-  }
-}
+    /* responsive connectors */
+    .connector{height:18px;border-left:2px dashed rgba(255,255,255,0.03);margin:0 auto;width:0}
 
-/* HP KECIL (≤ 480px) */
-@media (max-width:480px){
-  .node { 
-    min-width: 95%;
-    padding: 14px;
-    margin: 8px;
-  }
+    footer{margin-top:22px;color:var(--muted);font-size:13px;text-align:center}
 
-  .node .role {
-    font-size: 14px;
-  }
+    /* utilities */
+    .actions{display:flex;gap:10px;justify-content:center;margin-bottom:8px}
+    .btn{background:transparent;border:1px solid rgba(231, 4, 4, 0.06);padding:8px 12px;border-radius:8px;color:var(--text);font-size:13px;cursor:pointer}
+    .btn:active{transform:translateY(1px)}
 
-  .node .name, .node .sub {
-    font-size: 13px;
-  }
-}
-</style>
+    @media (max-width:520px){header{flex-direction:column;align-items:flex-start} .card{min-width:100%;max-width:100%;font-size:14px;padding:12px} body{padding:16px} h1{font-size:18px} h2{font-size:15px} .role{font-size:14px} .name{font-size:12px} .small{font-size:11px} ul li{font-size:12px}} .card{min-width:100%}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">KOOS</div>
+      <div>
+        <h1 style="text-align:center;">KOMUNITAS ORGANISASI OMK SEKONAU - Gereja St. Petrus & Paulus Rasul Sekonau</h1>
+      </div>
+    </header>
 
+    <section class="org" aria-label="struktur-omk">
+      <!-- Pembina -->
+      <div class="org-row" style="justify-content:center">
+        <div class="card" style="min-width:360px;max-width:720px">
+          <div class="role">𝐏𝐞𝐦𝐛𝐢𝐧𝐚 & 𝐏𝐞𝐧𝐚𝐧𝐠𝐠𝐮𝐧𝐠 𝐉𝐚𝐰𝐚𝐛</div>
+          <span class="name">Pastor Paroki • Ketua Stasi</span>
+          <div class="small">Pembina rohani & penanggung jawab kegiatan OMK</div>
+        </div>
+      </div>
+
+      <div class="connector"></div>
+
+      <!-- Pengurus Inti -->
+<div class="card">
+  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
+  <div class="text">
+    <div class="role">Ketua</div>
+    <span class="name">𝐌𝐀𝐑𝐈𝐒𝐀 𝐑𝐈𝐒𝐌𝐀</span>
+    <div class="small">(Memimpin rapat, koordinasi keseluruhan)</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
+  <div class="text">
+    <div class="role">Wakil Ketua</div>
+    <span class="name">𝐀𝐍𝐃𝐑𝐄</span>
+    <div class="small">(Menggantikan Ketua saat berhalangan)</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
+  <div class="text">
+    <div class="role">Sekretaris</div>
+    <span class="name">𝐘𝐔𝐋𝐈𝐓𝐀 𝐓𝐈𝐊𝐀</span>
+    <div class="small">(Notulensi, administrasi & arsip)</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
+  <div class="text">
+    <div class="role">Bendahara</div>
+    <span class="name">𝐈𝐊𝐍𝐀𝐒𝐈𝐔𝐒 𝐊𝐀𝐑𝐋𝐎</span>
+    <div class="small">(Keuangan & pelaporan dana)</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
+  <div class="text">
+    <div class="role">Bidang-Bidang Pelayanan</div>
+    <span class="name">𝐆𝐋𝐎𝐑𝐈𝐀 𝐉𝐔𝐌𝐈 & 𝐀𝐆𝐔𝐒 𝐓𝐈𝐑𝐀 𝐉𝐄𝐍𝐈</span>
+    <div class="small">(Keuangan & pelaporan dana)</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
+  <div class="text">
+    <div class="role">Kerohanian & Pembinaan Iman</div>
+    <span class="name">𝐑𝐈𝐀𝐍 𝐕𝐀𝐋𝐄𝐍𝐓𝐈𝐍𝐔𝐒 & 𝐀𝐋𝐄𝐍</span>
+    <div class="small">(Sie Doa & Retreat & Pendalaman Kitab Suci)</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
+  <div class="text">
+    <div class="role">Bidang Soisal & Pelayanan</div>
+    <span class="name">𝐏𝐀𝐔𝐋𝐔𝐒 𝐓𝐎𝐍𝐎</span>
+    <div class="small">(Tari Liturgi & Drama & Pertunjukan & Dekorasi & Desain)</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
+  <div class="text">
+    <div class="role">Kepemudaan & Pengembangan</div>
+    <span class="name">𝐇𝐄𝐍𝐆𝐊𝐈 𝐀𝐋𝐁𝐈𝐍𝐔𝐒</span>
+    <div class="small">(Pelatihan & Workshop & Olahraga & Kebersamaan & Pengembangan Bakat)</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
+  <div class="text">
+    <div class="role">Humas & Dokumentasi</div>
+    <span class="name">𝐘𝐔𝐃𝐈 𝐖𝐀𝐍𝐓𝐎𝐑𝐎 & 𝐇𝐄𝐑𝐊𝐔𝐋𝐀𝐍𝐔𝐒</span>
+    <div class="small">(Media Sosial & Publikasi)</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
+  <div class="text">
+    <div class="role">Dana Usaha</div>
+    <span class="name">𝐘𝐔𝐋𝐈𝐓𝐀 𝐃𝐎𝐍𝐀𝐓𝐈𝐋𝐀 & 𝐘𝐔𝐒𝐓𝐈𝐍𝐀 𝐎𝐊𝐓𝐀𝐕𝐈𝐀</span>
+    <div class="small">(Usaha Kreatif Jualan)</div>
+  </div>
+</div>
+    </section>
+
+    <footer>
+      <div class="actions">
+        <button class="btn" onclick="copyHtml()">Salin</button>
+        <button class="btn" onclick="downloadFile()">Unduh file</button>
+      </div>
+      <div>Data ini tidak diizinkan untuk di publikasikan.</div>
+    </footer>
+  </div>
+
+  <script>
+    function copyHtml(){
+      const code = `<!doctype html>` + '\n' + document.documentElement.outerHTML;
+      navigator.clipboard.writeText(code).then(()=>alert('HTML disalin ke clipboard'))
+        .catch(()=>alert('Gagal menyalin. Silakan salin manual.'))
+    }
+
+    function downloadFile(){
+      const blob = new Blob([document.documentElement.outerHTML], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'struktur_organisasi_omk_sekonau.html';
+      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
