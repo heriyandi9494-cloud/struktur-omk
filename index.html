@@ -76,40 +76,117 @@
 </section>
 
 <style>
-/* Simple responsive org-chart style */
-.org-container { padding: 20px; display:flex; justify-content:center; }
-.org-chart { width: 100%; max-width: 1100px; font-family: "Segoe UI", Arial, sans-serif; text-align:center; }
+/* CONTAINER UTAMA */
+.org-container { 
+  padding: 20px; 
+  display:flex; 
+  justify-content:center; 
+}
+.org-chart { 
+  width: 100%; 
+  max-width: 1100px; 
+  font-family: "Segoe UI", Arial, sans-serif; 
+  text-align:center; 
+}
 
-/* Nodes */
+/* NODE / BOX */
 .node {
   background: #6784e3;
-  border-radius: 10px;
-  padding: 10px 14px;
+  border-radius: 12px;
+  padding: 12px 16px;
   box-shadow: 0 6px 18px rgba(3, 247, 11, 0.08);
   border: 1px solid rgba(20,40,80,0.06);
   display:inline-block;
-  min-width: 160px;
-  margin: 10px;
+  min-width: 180px;
+  margin: 12px;
+  transition: .3s ease;
 }
-.node .role { font-weight:700; color:#27fde4; letter-spacing:0.4px; }
-.node .name { font-size:13px; color:#161515; margin-top:6px; }
-.node .sub { margin:8px 0 0; padding-left:18px; text-align:left; font-size:13px; color:#333; }
+.node .role { 
+  font-weight:700; 
+  color:#27fde4; 
+  letter-spacing:0.4px;
+  font-size: 15px;
+}
+.node .name { 
+  font-size:14px; 
+  color:#161515; 
+  margin-top:6px; 
+}
+.node .sub { 
+  margin:8px 0 0; 
+  padding-left:18px; 
+  text-align:left; 
+  font-size:13px; 
+  color:#333; 
+}
 
-/* Levels */
-.level { display:flex; flex-wrap:wrap; justify-content:center; margin-top:18px; gap:12px; align-items:flex-start; }
-.level.grid { justify-content:space-between; gap:14px; }
+/* LEVEL */
+.level { 
+  display:flex; 
+  flex-wrap:wrap; 
+  justify-content:center; 
+  margin-top:18px; 
+  gap:12px; 
+  align-items:flex-start; 
+}
+.level.grid { 
+  justify-content:space-between; 
+  gap:14px; 
+}
 
-/* Variants */
-.node.board { background: linear-gradient(90deg,#025fd8,#3b8dea); border:1px solid rgba(237, 239, 242, 0.08); min-width:260px; }
-.node.top { background:#577ae3; border:1px solid rgba(237, 11, 11, 0.08);}
-.node.box { min-width:200px; max-width:220px; text-align:center; }
+/* VARIASI NODE */
+.node.board { 
+  background: linear-gradient(90deg,#025fd8,#3b8dea); 
+  border:1px solid rgba(237, 239, 242, 0.08); 
+  min-width:260px;
+}
+.node.top { 
+  background:#577ae3; 
+  border:1px solid rgba(237, 11, 11, 0.08);
+}
+.node.box { 
+  min-width:200px; 
+  max-width:230px; 
+  text-align:center; 
+}
 
-/* Responsiveness */
+/* --- MOBILE RESPONSIVE --- */
 @media (max-width:900px){
-  .level.grid { display:flex; flex-direction:column; align-items:center; }
-  .node { min-width:90%; max-width:420px; }
+  .node { 
+    min-width: 85%; 
+    max-width: 420px;
+    font-size: 14px;
+  }
+
+  .node .role { 
+    font-size: 15px;
+  }
+
+  .node .name, .node .sub {
+    font-size: 14px;
+  }
+
+  .level.grid { 
+    flex-direction:column; 
+    align-items:center;
+  }
 }
 
-/* Optional small connector lines (purely decorative) */
-.level + .level { margin-top:8px; }
+/* HP KECIL (≤ 480px) */
+@media (max-width:480px){
+  .node { 
+    min-width: 95%;
+    padding: 14px;
+    margin: 8px;
+  }
+
+  .node .role {
+    font-size: 14px;
+  }
+
+  .node .name, .node .sub {
+    font-size: 13px;
+  }
+}
 </style>
+
