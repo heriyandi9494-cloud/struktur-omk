@@ -1,210 +1,361 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Struktur OMK Sekonau</title>
-  <style>
-    :root{--bg:#2eef08;--card:#0ede0e;--accent:#250ef7;--text:#e0e7ef;--muted:#9fb0c8}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter, system-ui, -apple-system,Segoe UI, Roboto, "Helvetica Neue", Arial;background:linear-gradient(180deg,#15cd0c 0%,#030d43 100%);color:var(--text);padding:28px}
-    .wrap{max-width:1100px;margin:0 auto}
-    header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-    header .logo{width:64px;height:64px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#6ee7b7);display:flex;align-items:center;justify-content:center;font-weight:700;color:#d4e2f0}
-    header h1{font-size:20px;margin:0}
-    header p{margin:0;color:var(--muted);font-size:13px}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bagan OMK Sekonau - Tambah & Hapus</title>
+<style>
+body {
+  background-image: url('https://i.postimg.cc/5tXj9NRJ/pngtree-professional-managing-digital-network-connections-with-interactive-interface-picture-image-1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+  header {
+    text-align: center;
+    padding: 30px 10px 20px 10px;
+    background: linear-gradient(to right, #c4de04, #ebf311);
+    color: rgb(247, 4, 4);
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+  }
+
+  .org-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .level {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+
+  .card {
+    background: rgb(188, 240, 3);
+    border-radius: 12px;
+    padding: 35px;
+    width: 140px;
+    text-align: center;E
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    position: relative;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+  }
+
+  .card.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+
+  .card h3 {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #004080;
+  }
+
+  .card p {
+    margin: 0;
+    font-size: 0.85em;
+    color: #555;
+  }
+
+  .slider-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #004080 #f5f7fa;
+    margin-bottom: 20px;
+  }
+
+  .slider-container::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .slider-container::-webkit-scrollbar-thumb {
+    background: #004080;
+    border-radius: 4px;
+  }
+
+  .slider-container::-webkit-scrollbar-track {
+    background: #f5f7fa;
+  }
+
+  @media (max-width: 600px) {
+    .level {
+      flex-direction: column;
+      gap: 30px;
+    }
+    .slider-container {
+      gap: 15px;
+    }
     .card {
-  display: flex;              /* Menjadikan card flex */
-  align-items: center;        /* Vertikal center */
-  gap: 12px;                  /* Jarak antara foto & teks */
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.04);
-  padding: 14px 18px;
-  border-radius: 12px;
-  min-width: 220px;
-  max-width: 320px;
-  text-align: center;           /* Teks rata kiri */
-  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
-  transition: transform .18s ease, box-shadow .18s ease;
-}
+      width: 120px;
+    }
+  }
 
-.card img {
-  width: 48px;                /* Ukuran foto */
-  height: 48px;
-  border-radius: 50%;         /* Bulat */
-  object-fit: cover;          /* Agar proporsional */
-  flex-shrink: 0;             /* Tidak mengecil */
-}
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+  }
 
-.card .text {
-  display: flex;
-  flex-direction: column;
-}
+  .modal-content {
+    background: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 300px;
+    text-align: center;
+  }
 
-    /* chart / org container */
-    .org{display:flex;flex-direction:column;gap:18px}
-    .org-row{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+  .modal-content img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
 
-    .card{background:linear-gradient(180deg, rgba(234, 6, 6, 0.02), rgba(221, 7, 7, 0.01));border:1px solid rgba(255,255,255,0.04);padding:14px 18px;border-radius:12px;min-width:220px;max-width:320px;text-align:center;box-shadow:0 6px 18px rgba(2,6,23,0.6);transition:transform .18s ease, box-shadow .18s ease}
-    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2, 46, 242, 0.7)}
-    .role{font-weight:700;font-size:15px}
-    .name{display:block;margin-top:6px;font-size:13px;color:var(--muted)}
-    .small{font-size:12px;color:var(--muted);margin-top:8px}
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
-    /* specialized lists */
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-    ul{padding-left:16px;margin:8px 0 0 0;text-align:left}
-    li{margin:6px 0;color:var(--muted);font-size:14px}
+  .close:hover {
+    color: #000;
+  }
 
-    /* responsive connectors */
-    .connector{height:18px;border-left:2px dashed rgba(255,255,255,0.03);margin:0 auto;width:0}
+  /* Tombol tambah */
+  .add-button {
+    background: #004080;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px 0;
+    font-size: 0.9em;
+  }
 
-    footer{margin-top:22px;color:var(--muted);font-size:13px;text-align:center}
+  .add-button:hover {
+    background: #0066cc;
+  }
 
-    /* utilities */
-    .actions{display:flex;gap:10px;justify-content:center;margin-bottom:8px}
-    .btn{background:transparent;border:1px solid rgba(231, 4, 4, 0.06);padding:8px 12px;border-radius:8px;color:var(--text);font-size:13px;cursor:pointer}
-    .btn:active{transform:translateY(1px)}
+  /* Tombol hapus (untuk semua card baru) */
+  .remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+    font-size: 16px;
+  }
 
-    @media (max-width:520px){header{flex-direction:column;align-items:flex-start} .card{min-width:100%;max-width:100%;font-size:14px;padding:12px} body{padding:16px} h1{font-size:18px} h2{font-size:15px} .role{font-size:14px} .name{font-size:12px} .small{font-size:11px} ul li{font-size:12px}} .card{min-width:100%}}
-  </style>
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">SOOS</div>
-      <div>
-        <h1 style="text-align:center;">STRUKTUR ORGANISASI OMK SEKONAU - Gereja St. Petrus & Paulus Rasul Sekonau</h1>
-      </div>
-    </header>
 
-    <section class="org" aria-label="struktur-omk">
-      <!-- Pembina -->
-      <div class="org-row" style="justify-content:center">
-        <div class="card" style="min-width:360px;max-width:720px">
-          <div class="role">𝐏𝐞𝐦𝐛𝐢𝐧𝐚 & 𝐏𝐞𝐧𝐚𝐧𝐠𝐠𝐮𝐧𝐠 𝐉𝐚𝐰𝐚𝐛</div>
-          <span class="name">Pastor Paroki • Ketua Stasi</span>
-          <div class="small">Pembina rohani & penanggung jawab kegiatan OMK</div>
-        </div>
-      </div>
+<header>
+  <h1>𝐒𝐭𝐫𝐮𝐤𝐭𝐮𝐫 𝐊𝐞𝐩𝐞𝐧𝐠𝐮𝐫𝐮𝐬𝐚𝐧 𝐎𝐌𝐊 𝐒𝐞𝐤𝐨𝐧𝐚𝐮</h1>
+</header>
 
-      <div class="connector"></div>
+<div class="org-chart">
 
-      <!-- Pengurus Inti -->
-<div class="card">
-  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
-  <div class="text">
-    <div class="role">Ketua</div>
-    <span class="name">𝐌𝐀𝐑𝐈𝐒𝐀 𝐑𝐈𝐒𝐌𝐀</span>
-    <div class="small">(Memimpin rapat, koordinasi keseluruhan)</div>
+  <!-- Level Hierarki -->
+  <div class="level">
+    <div class="card" onclick="openModal('𝐇𝐄𝐑𝐈','Pembina','https://i.postimg.cc/5NgZy98Z/Screenshot-17.png','Pembina OMK Sekonau.')">
+      <img src="https://i.postimg.cc/5NgZy98Z/Screenshot-17.png" alt="𝐏𝐄𝐌𝐁𝐈𝐍𝐀">
+      <h3>𝐇𝐄𝐑𝐈</h3>
+      <p>Melakukan pembinaan secara khusus</p>
+    </div>
+  </div>
+
+  <div class="level">
+    <div class="card" onclick="openModal('𝐌𝐀𝐑𝐈𝐒𝐀 𝐑𝐈𝐒𝐌𝐀','Ketua','https://i.postimg.cc/q7ywtQ9S/Screenshot-18.png','Ketua OMK Sekonau.')">
+      <img src="https://i.postimg.cc/q7ywtQ9S/Screenshot-18.png" alt="Ketua">
+      <h3>𝐌𝐀𝐑𝐈𝐒𝐀 𝐑𝐈𝐒𝐌𝐀</h3>
+      <p>Ketua</p>
+    </div>
+  </div>
+
+  <div class="level">
+    <div class="card" onclick="openModal('𝐘𝐔𝐋𝐈𝐓𝐀 𝐓𝐈𝐊𝐀','Sekretaris','https://i.postimg.cc/DZ5qsN5Z/Screenshot-19.png','Sekretaris OMK.')">
+      <img src="https://i.postimg.cc/DZ5qsN5Z/Screenshot-19.png" alt="Sekretaris">
+      <h3>𝐘𝐔𝐋𝐈𝐓𝐀 𝐓𝐈𝐊𝐀</h3>
+      <p>Sekretaris</p>
+    </div>
+    <div class="card" onclick="openModal('𝐈𝐊𝐍𝐀𝐒𝐈𝐔𝐒 𝐊𝐀𝐑𝐋𝐎','Bendahara','https://i.postimg.cc/Zn2vxzNF/Screenshot-20.png','Bendahara OMK.')">
+      <img src="https://i.postimg.cc/Zn2vxzNF/Screenshot-20.png" alt="Bendahara">
+      <h3>𝐈𝐊𝐍𝐀𝐒𝐈𝐔𝐒 𝐊𝐀𝐑𝐋𝐎</h3>
+      <p>Bendahara</p>
+    </div>
+  </div>
+
+  <!-- Slider Divisi / Devosi -->
+  <button class="add-button" onclick="addNewCard()">+ Tambah Divisi</button>
+  <div class="slider-container" id="sliderDivisi">
+    <div class="card" onclick="openModal('𝐆𝐋𝐎𝐑𝐈𝐀 𝐉𝐔𝐌𝐈','Divisi Liturgi','https://via.placeholder.com/100','Divisi Kegiatan OMK.')">
+      <img src="https://via.placeholder.com/100" alt="Divisi Kegiatan">
+      <h3>𝐆𝐋𝐎𝐑𝐈𝐀 𝐉𝐔𝐌𝐈</h3>
+      <p>Divisi Liturgi</p>
+    </div>
+    <div class="card" onclick="openModal('𝐑𝐀𝐓𝐍𝐀','Divisi Liturgi','https://via.placeholder.com/100','Divisi Liturgi OMK.')">
+      <img src="https://via.placeholder.com/100" alt="Divisi Liturgi">
+      <h3>𝐑𝐀𝐓𝐍𝐀</h3>
+      <p>Divisi Kreativitas & Seni</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modal-img" src="" alt="">
+    <h3 id="modal-name"></h3>
+    <p id="modal-role"></p>
+    <p id="modal-bio"></p>
   </div>
 </div>
 
-<div class="card">
-  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
-  <div class="text">
-    <div class="role">Wakil Ketua</div>
-    <span class="name">𝐀𝐍𝐃𝐑𝐄</span>
-    <div class="small">(Menggantikan Ketua saat berhalangan)</div>
-  </div>
-</div>
+<script>
+  // Modal
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modal-img');
+  const modalName = document.getElementById('modal-name');
+  const modalRole = document.getElementById('modal-role');
+  const modalBio = document.getElementById('modal-bio');
 
-<div class="card">
-  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
-  <div class="text">
-    <div class="role">Sekretaris</div>
-    <span class="name">𝐘𝐔𝐋𝐈𝐓𝐀 𝐓𝐈𝐊𝐀</span>
-    <div class="small">(Notulensi, administrasi & arsip)</div>
-  </div>
-</div>
+  function openModal(name, role, img, bio){
+    modal.style.display = 'block';
+    modalImg.src = img;
+    modalName.textContent = name;
+    modalRole.textContent = role;
+    modalBio.textContent = bio;
+  }
 
-<div class="card">
-  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
-  <div class="text">
-    <div class="role">Bendahara</div>
-    <span class="name">𝐈𝐊𝐍𝐀𝐒𝐈𝐔𝐒 𝐊𝐀𝐑𝐋𝐎</span>
-    <div class="small">(Keuangan & pelaporan dana)</div>
-  </div>
-</div>
+  function closeModal(){
+    modal.style.display = 'none';
+  }
 
-<div class="card">
-  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
-  <div class="text">
-    <div class="role">Bidang-Bidang Pelayanan</div>
-    <span class="name">𝐆𝐋𝐎𝐑𝐈𝐀 𝐉𝐔𝐌𝐈 & 𝐀𝐆𝐔𝐒 𝐓𝐈𝐑𝐀 𝐉𝐄𝐍𝐈</span>
-    <div class="small">(Keuangan & pelaporan dana)</div>
-  </div>
-</div>
-
-<div class="card">
-  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
-  <div class="text">
-    <div class="role">Kerohanian & Pembinaan Iman</div>
-    <span class="name">𝐑𝐈𝐀𝐍 𝐕𝐀𝐋𝐄𝐍𝐓𝐈𝐍𝐔𝐒 & 𝐀𝐋𝐄𝐍</span>
-    <div class="small">(Sie Doa & Retreat & Pendalaman Kitab Suci)</div>
-  </div>
-</div>
-
-<div class="card">
-  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
-  <div class="text">
-    <div class="role">Bidang Soisal & Pelayanan</div>
-    <span class="name">𝐏𝐀𝐔𝐋𝐔𝐒 𝐓𝐎𝐍𝐎</span>
-    <div class="small">(Tari Liturgi & Drama & Pertunjukan & Dekorasi & Desain)</div>
-  </div>
-</div>
-
-<div class="card">
-  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
-  <div class="text">
-    <div class="role">Kepemudaan & Pengembangan</div>
-    <span class="name">𝐇𝐄𝐍𝐆𝐊𝐈 𝐀𝐋𝐁𝐈𝐍𝐔𝐒</span>
-    <div class="small">(Pelatihan & Workshop & Olahraga & Kebersamaan & Pengembangan Bakat)</div>
-  </div>
-</div>
-
-<div class="card">
-  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
-  <div class="text">
-    <div class="role">Humas & Dokumentasi</div>
-    <span class="name">𝐘𝐔𝐃𝐈 𝐖𝐀𝐍𝐓𝐎𝐑𝐎 & 𝐇𝐄𝐑𝐊𝐔𝐋𝐀𝐍𝐔𝐒</span>
-    <div class="small">(Media Sosial & Publikasi)</div>
-  </div>
-</div>
-
-<div class="card">
-  <img src="https://i.postimg.cc/RVjmS6X6/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Marisa Risma">
-  <div class="text">
-    <div class="role">Dana Usaha</div>
-    <span class="name">𝐘𝐔𝐋𝐈𝐓𝐀 𝐃𝐎𝐍𝐀𝐓𝐈𝐋𝐀 & 𝐘𝐔𝐒𝐓𝐈𝐍𝐀 𝐎𝐊𝐓𝐀𝐕𝐈𝐀</span>
-    <div class="small">(Usaha Kreatif Jualan)</div>
-  </div>
-</div>
-    </section>
-
-    <footer>
-      <div class="actions">
-        <button class="btn" onclick="copyHtml()">Salin</button>
-        <button class="btn" onclick="downloadFile()">Unduh file</button>
-      </div>
-      <div>Data ini tidak diizinkan untuk di publikasikan.</div>
-    </footer>
-  </div>
-
-  <script>
-    function copyHtml(){
-      const code = `<!doctype html>` + '\n' + document.documentElement.outerHTML;
-      navigator.clipboard.writeText(code).then(()=>alert('HTML disalin ke clipboard'))
-        .catch(()=>alert('Gagal menyalin. Silakan salin manual.'))
+  window.onclick = function(event) {
+    if(event.target == modal){
+      closeModal();
     }
+  }
 
-    function downloadFile(){
-      const blob = new Blob([document.documentElement.outerHTML], {type:'text/html'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'struktur_organisasi_omk_sekonau.html';
-      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-    }
-  </script>
+  // Animasi masuk kartu
+  const cards = document.querySelectorAll('.card');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.2});
+
+  cards.forEach(card => observer.observe(card));
+
+  // Fungsi hapus card
+  function removeCard(cardElement, name){
+    cardElement.remove();
+    let savedCards = JSON.parse(localStorage.getItem('sliderCards')) || [];
+    savedCards = savedCards.filter(c => c.name !== name);
+    localStorage.setItem('sliderCards', JSON.stringify(savedCards));
+  }
+
+  // Tambah card baru
+  function addNewCard() {
+    let name = prompt("Nama anggota:");
+    if(!name) return;
+    let role = prompt("Jabatan / Divisi:");
+    if(!role) return;
+    let img = prompt("Link gambar (URL):", "https://via.placeholder.com/100");
+    if(!img) img = "https://via.placeholder.com/100";
+    let bio = prompt("Keterangan / Bio:");
+
+    const slider = document.getElementById('sliderDivisi');
+    const card = document.createElement('div');
+    card.classList.add('card', 'show');
+    card.onclick = () => openModal(name, role, img, bio);
+    card.innerHTML = `<img src="${img}" alt="${role}"><h3>${name}</h3><p>${role}</p>`;
+
+    // tombol hapus
+    const removeBtn = document.createElement('span');
+    removeBtn.textContent = '×';
+    removeBtn.classList.add('remove-btn');
+    removeBtn.onclick = (e) => {
+      e.stopPropagation();
+      removeCard(card, name);
+    };
+    card.appendChild(removeBtn);
+
+    slider.appendChild(card);
+
+    // Simpan ke localStorage
+    let savedCards = JSON.parse(localStorage.getItem('sliderCards')) || [];
+    savedCards.push({name, role, img, bio});
+    localStorage.setItem('sliderCards', JSON.stringify(savedCards));
+  }
+
+  // Load data dari localStorage saat halaman dibuka
+  window.addEventListener('DOMContentLoaded', () => {
+    let savedCards = JSON.parse(localStorage.getItem('sliderCards')) || [];
+    const slider = document.getElementById('sliderDivisi');
+    savedCards.forEach(c => {
+      const card = document.createElement('div');
+      card.classList.add('card', 'show');
+      card.onclick = () => openModal(c.name, c.role, c.img, c.bio);
+      card.innerHTML = `<img src="${c.img}" alt="${c.role}"><h3>${c.name}</h3><p>${c.role}</p>`;
+
+      // tombol hapus
+      const removeBtn = document.createElement('span');
+      removeBtn.textContent = '×';
+      removeBtn.classList.add('remove-btn');
+      removeBtn.onclick = (e) => {
+        e.stopPropagation();
+        removeCard(card, c.name);
+      };
+      card.appendChild(removeBtn);
+
+      slider.appendChild(card);
+    });
+  });
+</script>
+
 </body>
 </html>
