@@ -6,241 +6,248 @@
 <title>Bagan OMK Sekonau - Tambah & Hapus</title>
 <style>
 body {
-  background-image: url('https://i.postimg.cc/5tXj9NRJ/pngtree-professional-managing-digital-network-connections-with-interactive-interface-picture-image-1.png');
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color:  #f0f1e9;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-  header {
-    text-align: center;
-    padding: 30px 10px 20px 10px;
-    background: linear-gradient(to right, #c4de04, #ebf311);
-    color: rgb(247, 4, 4);
-  }
+/* Header */
+header {
+  text-align: center;
+  padding: 20px 10px;
+  background: linear-gradient(to right, #111111, #0b0b0b);
+  color: rgb(247, 4, 4);
+}
 
-  header h1 {
-    margin: 0;
-    font-size: 1.8em;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-  }
+header h1 {
+  margin: 0;
+  font-size: 1.6em;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
 
-  .org-chart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
+/* Organisasi Chart */
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 10px;
+}
 
+.level {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: rgb(14, 203, 246);
+  border-radius: 12px;
+  padding: 20px;
+  width: 130px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  position: relative;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease-out;
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+
+.card h3 {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #e7f609;
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.75em;
+  color: #e90606;
+}
+
+/* Slider */
+.slider-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding-bottom: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #004080 #090909;
+  margin-bottom: 20px;
+}
+
+.slider-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.slider-container::-webkit-scrollbar-thumb {
+  background: #004080;
+  border-radius: 3px;
+}
+
+.slider-container::-webkit-scrollbar-track {
+  background: #f5f7fa;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background: white;
+  margin: 15% auto;
+  padding: 15px;
+  border-radius: 12px;
+  max-width: 90%;
+  text-align: center;
+}
+
+.modal-content img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+/* Tombol tambah */
+.add-button {
+  background: #004080;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px 0;
+  font-size: 0.85em;
+}
+
+.add-button:hover {
+  background: #0066cc;
+}
+
+/* Tombol hapus */
+.remove-btn {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Responsive Mobile */
+@media (max-width: 600px) {
   .level {
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
     gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 60px;
   }
-
   .card {
-    background: rgb(188, 240, 3);
-    border-radius: 12px;
-    padding: 35px;
-    width: 140px;
-    text-align: center;E
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    position: relative;
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease-out;
+    width: 120px;
+    padding: 15px;
   }
-
-  .card.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
   .card img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 10px;
+    width: 60px;
+    height: 60px;
   }
-
-  .card h3 {
-    margin: 5px 0;
-    font-size: 1em;
-    color: #004080;
+  header h1 {
+    font-size: 1.4em;
   }
-
-  .card p {
-    margin: 0;
-    font-size: 0.85em;
-    color: #555;
-  }
-
-  .slider-container {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding-bottom: 10px;
-    scrollbar-width: thin;
-    scrollbar-color: #004080 #f5f7fa;
-    margin-bottom: 20px;
-  }
-
-  .slider-container::-webkit-scrollbar {
-    height: 8px;
-  }
-
-  .slider-container::-webkit-scrollbar-thumb {
-    background: #004080;
-    border-radius: 4px;
-  }
-
-  .slider-container::-webkit-scrollbar-track {
-    background: #f5f7fa;
-  }
-
-  @media (max-width: 600px) {
-    .level {
-      flex-direction: column;
-      gap: 30px;
-    }
-    .slider-container {
-      gap: 15px;
-    }
-    .card {
-      width: 120px;
-    }
-  }
-
-  /* Modal */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
-  }
-
-  .modal-content {
-    background: white;
-    margin: 15% auto;
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 300px;
-    text-align: center;
-  }
-
-  .modal-content img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .close:hover {
-    color: #000;
-  }
-
-  /* Tombol tambah */
-  .add-button {
-    background: #004080;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin: 10px 0;
-    font-size: 0.9em;
-  }
-
-  .add-button:hover {
-    background: #0066cc;
-  }
-
-  /* Tombol hapus (untuk semua card baru) */
-  .remove-btn {
-    position: absolute;
-    top: 5px;
-    right: 8px;
-    cursor: pointer;
-    color: red;
-    font-weight: bold;
-    font-size: 16px;
-  }
-
+}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>𝐒𝐭𝐫𝐮𝐤𝐭𝐮𝐫 𝐊𝐞𝐩𝐞𝐧𝐠𝐮𝐫𝐮𝐬𝐚𝐧 𝐎𝐌𝐊 𝐒𝐞𝐤𝐨𝐧𝐚𝐮</h1>
+  <h1>𝐒𝐓𝐑𝐔𝐊𝐓𝐔𝐑 𝐊𝐄𝐏𝐄𝐍𝐆𝐔𝐑𝐔𝐒𝐀𝐍 𝐎𝐌𝐊 𝐒𝐄𝐊𝐎𝐍𝐀𝐔</h1>
 </header>
 
 <div class="org-chart">
 
-  <!-- Level Hierarki -->
   <div class="level">
-    <div class="card" onclick="openModal('𝐇𝐄𝐑𝐈','Pembina','https://i.postimg.cc/5NgZy98Z/Screenshot-17.png','Pembina OMK Sekonau.')">
+    <div class="card" onclick="openModal('𝐇𝐄𝐑𝐈','𝐏𝐄𝐌𝐁𝐈𝐍𝐀','https://i.postimg.cc/5NgZy98Z/Screenshot-17.png','𝐌𝐞𝐥𝐚𝐤𝐮𝐤𝐚𝐧 𝐩𝐞𝐦𝐛𝐢𝐧𝐚𝐚𝐧 𝐬𝐞𝐜𝐚𝐫𝐚 𝐤𝐡𝐮𝐬𝐮𝐬, 𝐌𝐞𝐦𝐛𝐢𝐦𝐛𝐢𝐧𝐠, 𝐦𝐞𝐧𝐠𝐚𝐫𝐚𝐡𝐤𝐚𝐧, 𝐝𝐚𝐧 𝐦𝐞𝐦𝐛𝐞𝐫𝐢𝐤𝐚𝐧 𝐧𝐚𝐬𝐢𝐡𝐚𝐭 𝐫𝐨𝐡𝐚𝐧𝐢 𝐦𝐚𝐮𝐩𝐮𝐧 𝐚𝐝𝐦𝐢𝐧𝐢𝐬𝐭𝐫𝐚𝐭𝐢𝐟 𝐛𝐚𝐠𝐢 𝐨𝐫𝐠𝐚𝐧𝐢𝐬𝐚𝐬𝐢')">
       <img src="https://i.postimg.cc/5NgZy98Z/Screenshot-17.png" alt="𝐏𝐄𝐌𝐁𝐈𝐍𝐀">
       <h3>𝐇𝐄𝐑𝐈</h3>
-      <p>Melakukan pembinaan secara khusus</p>
+      <p>𝐏𝐄𝐌𝐁𝐈𝐍𝐀.</p>
     </div>
   </div>
 
   <div class="level">
-    <div class="card" onclick="openModal('𝐌𝐀𝐑𝐈𝐒𝐀 𝐑𝐈𝐒𝐌𝐀','Ketua','https://i.postimg.cc/J7xMYCdp/Screenshot-47.png','Ketua OMK Sekonau.')">
-      <img src="https://i.postimg.cc/J7xMYCdp/Screenshot-47.png" alt="Ketua">
+    <div class="card" onclick="openModal('𝐌𝐀𝐑𝐈𝐒𝐀 𝐑𝐈𝐒𝐌𝐀','𝐊𝐄𝐓𝐔𝐀','https://i.postimg.cc/J7xMYCdp/Screenshot-47.png','𝐌𝐞𝐦𝐢𝐦𝐩𝐢𝐧 𝐨𝐫𝐠𝐚𝐧𝐢𝐬𝐚𝐬𝐢, 𝐦𝐞𝐧𝐠𝐚𝐦𝐛𝐢𝐥 𝐤𝐞𝐩𝐮𝐭𝐮𝐬𝐚𝐧 𝐬𝐭𝐫𝐚𝐭𝐞𝐠𝐢𝐬, 𝐝𝐚𝐧 𝐦𝐞𝐧𝐠𝐨𝐨𝐫𝐝𝐢𝐧𝐚𝐬𝐢𝐤𝐚𝐧 𝐬𝐞𝐥𝐮𝐫𝐮𝐡 𝐤𝐞𝐠𝐢𝐚𝐭𝐚𝐧')">
+      <img src="https://i.postimg.cc/J7xMYCdp/Screenshot-47.png" alt="𝐊𝐄𝐓𝐔𝐀">
       <h3>𝐌𝐀𝐑𝐈𝐒𝐀 𝐑𝐈𝐒𝐌𝐀</h3>
-      <p>Ketua</p>
+      <p>𝐊𝐄𝐓𝐔𝐀</p>
     </div>
   </div>
 
   <div class="level">
-    <div class="card" onclick="openModal('𝐘𝐔𝐋𝐈𝐓𝐀 𝐓𝐈𝐊𝐀','Sekretaris','https://i.postimg.cc/DZ5qsN5Z/Screenshot-19.png','Sekretaris OMK.')">
-      <img src="https://i.postimg.cc/DZ5qsN5Z/Screenshot-19.png" alt="Sekretaris">
+    <div class="card" onclick="openModal('𝐘𝐔𝐋𝐈𝐓𝐀 𝐓𝐈𝐊𝐀','𝐒𝐄𝐊𝐑𝐄𝐓𝐀𝐓𝐈𝐒','https://i.postimg.cc/DZ5qsN5Z/Screenshot-19.png','𝐌𝐞𝐧𝐠𝐞𝐥𝐨𝐥𝐚 𝐚𝐝𝐦𝐢𝐧𝐢𝐬𝐭𝐫𝐚𝐬𝐢 𝐝𝐚𝐧 𝐝𝐨𝐤𝐮𝐦𝐞𝐧𝐭𝐚𝐬𝐢 𝐨𝐫𝐠𝐚𝐧𝐢𝐬𝐚𝐬𝐢.')">
+      <img src="https://i.postimg.cc/DZ5qsN5Z/Screenshot-19.png" alt="𝐒𝐄𝐊𝐑𝐄𝐓𝐀𝐓𝐈𝐒">
       <h3>𝐘𝐔𝐋𝐈𝐓𝐀 𝐓𝐈𝐊𝐀</h3>
-      <p>Sekretaris</p>
+      <p>𝐒𝐄𝐊𝐑𝐄𝐓𝐀𝐓𝐈𝐒</p>
     </div>
-    <div class="card" onclick="openModal('𝐈𝐊𝐍𝐀𝐒𝐈𝐔𝐒 𝐊𝐀𝐑𝐋𝐎','Bendahara','https://i.postimg.cc/Zn2vxzNF/Screenshot-20.png','Bendahara OMK.')">
-      <img src="https://i.postimg.cc/Zn2vxzNF/Screenshot-20.png" alt="Bendahara">
+    <div class="card" onclick="openModal('𝐈𝐊𝐍𝐀𝐒𝐈𝐔𝐒 𝐊𝐀𝐑𝐋𝐎','𝐁𝐄𝐍𝐃𝐀𝐇𝐀𝐑𝐀','https://i.postimg.cc/Zn2vxzNF/Screenshot-20.png','𝐌𝐞𝐧𝐠𝐞𝐥𝐨𝐥𝐚 𝐤𝐞𝐮𝐚𝐧𝐠𝐚𝐧 𝐨𝐫𝐠𝐚𝐧𝐢𝐬𝐚𝐬𝐢 𝐝𝐞𝐧𝐠𝐚𝐧 𝐭𝐫𝐚𝐧𝐬𝐩𝐚𝐫𝐚𝐧 𝐝𝐚𝐧 𝐚𝐤𝐮𝐧𝐭𝐚𝐛𝐞𝐥')">
+      <img src="https://i.postimg.cc/Zn2vxzNF/Screenshot-20.png" alt="𝐁𝐄𝐍𝐃𝐀𝐇𝐀𝐑𝐀">
       <h3>𝐈𝐊𝐍𝐀𝐒𝐈𝐔𝐒 𝐊𝐀𝐑𝐋𝐎</h3>
-      <p>Bendahara</p>
+      <p>𝐁𝐄𝐍𝐃𝐀𝐇𝐀𝐑𝐀</p>
     </div>
   </div>
 
-  <!-- Slider Divisi / Devosi -->
   <button class="add-button" onclick="addNewCard()">+ Tambah Divisi</button>
   <div class="slider-container" id="sliderDivisi">
-    <div class="card" onclick="openModal('𝐆𝐋𝐎𝐑𝐈𝐀 𝐉𝐔𝐌𝐈','Divisi Liturgi','https://via.placeholder.com/100','Divisi Kegiatan OMK.')">
-      <img src="https://via.placeholder.com/100" alt="Divisi Kegiatan">
+    <div class="card" onclick="openModal('𝐆𝐋𝐎𝐑𝐈𝐀 𝐉𝐔𝐌𝐈','𝐃𝐈𝐕𝐈𝐒𝐈 𝐋𝐈𝐓𝐔𝐑𝐆𝐈','https://via.placeholder.com/100','𝐌𝐞𝐧𝐠𝐮𝐫𝐮𝐬 𝐩𝐞𝐫𝐢𝐛𝐚𝐝𝐚𝐭𝐚𝐧, 𝐦𝐢𝐬𝐚, 𝐝𝐨𝐚 𝐛𝐞𝐫𝐬𝐚𝐦𝐚.')">
+      <img src="https://via.placeholder.com/100" alt="𝐃𝐈𝐕𝐈𝐒𝐈 𝐋𝐈𝐓𝐔𝐑𝐆𝐈">
       <h3>𝐆𝐋𝐎𝐑𝐈𝐀 𝐉𝐔𝐌𝐈</h3>
-      <p>Divisi Liturgi</p>
+      <p></p>
     </div>
-    <div class="card" onclick="openModal('𝐑𝐀𝐓𝐍𝐀','Divisi Liturgi','https://via.placeholder.com/100','Divisi Liturgi OMK.')">
-      <img src="https://via.placeholder.com/100" alt="Divisi Liturgi">
+    <div class="card" onclick="openModal('𝐑𝐀𝐓𝐍𝐀','𝐃𝐈𝐕𝐈𝐒𝐈 𝐊𝐑𝐄𝐀𝐓𝐈𝐅 𝐃𝐀𝐍 𝐒𝐄𝐍𝐈','https://via.placeholder.com/100','𝐌𝐞𝐧𝐠𝐚𝐭𝐮𝐫 𝐤𝐞𝐠𝐢𝐚𝐭𝐚𝐧 𝐤𝐫𝐞𝐚𝐭𝐢𝐟, 𝐚𝐜𝐚𝐫𝐚, 𝐝𝐚𝐧 𝐡𝐢𝐛𝐮𝐫𝐚𝐧.')">
+      <img src="https://via.placeholder.com/100" alt="𝐃𝐈𝐕𝐈𝐒𝐈 𝐊𝐑𝐄𝐀𝐓𝐈𝐅 𝐃𝐀𝐍 𝐒𝐄𝐍𝐈">
       <h3>𝐑𝐀𝐓𝐍𝐀</h3>
-      <p>Divisi Kreativitas & Seni</p>
+      <p></p>
     </div>
   </div>
 
 </div>
 
-<!-- Modal -->
 <div id="modal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -252,109 +259,102 @@ body {
 </div>
 
 <script>
-  // Modal
-  const modal = document.getElementById('modal');
-  const modalImg = document.getElementById('modal-img');
-  const modalName = document.getElementById('modal-name');
-  const modalRole = document.getElementById('modal-role');
-  const modalBio = document.getElementById('modal-bio');
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modal-img');
+const modalName = document.getElementById('modal-name');
+const modalRole = document.getElementById('modal-role');
+const modalBio = document.getElementById('modal-bio');
 
-  function openModal(name, role, img, bio){
-    modal.style.display = 'block';
-    modalImg.src = img;
-    modalName.textContent = name;
-    modalRole.textContent = role;
-    modalBio.textContent = bio;
+function openModal(name, role, img, bio){
+  modal.style.display = 'block';
+  modalImg.src = img;
+  modalName.textContent = name;
+  modalRole.textContent = role;
+  modalBio.textContent = bio;
+}
+
+function closeModal(){
+  modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+  if(event.target == modal){
+    closeModal();
   }
+}
 
-  function closeModal(){
-    modal.style.display = 'none';
-  }
-
-  window.onclick = function(event) {
-    if(event.target == modal){
-      closeModal();
+// Animasi masuk kartu
+const cards = document.querySelectorAll('.card');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
     }
-  }
+  });
+}, {threshold: 0.2});
 
-  // Animasi masuk kartu
-  const cards = document.querySelectorAll('.card');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('show');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {threshold: 0.2});
+cards.forEach(card => observer.observe(card));
 
-  cards.forEach(card => observer.observe(card));
+function removeCard(cardElement, name){
+  cardElement.remove();
+  let savedCards = JSON.parse(localStorage.getItem('sliderCards')) || [];
+  savedCards = savedCards.filter(c => c.name !== name);
+  localStorage.setItem('sliderCards', JSON.stringify(savedCards));
+}
 
-  // Fungsi hapus card
-  function removeCard(cardElement, name){
-    cardElement.remove();
-    let savedCards = JSON.parse(localStorage.getItem('sliderCards')) || [];
-    savedCards = savedCards.filter(c => c.name !== name);
-    localStorage.setItem('sliderCards', JSON.stringify(savedCards));
-  }
+function addNewCard() {
+  let name = prompt("Nama anggota:");
+  if(!name) return;
+  let role = prompt("Jabatan / Divisi:");
+  if(!role) return;
+  let img = prompt("Link gambar (URL):", "https://via.placeholder.com/100");
+  if(!img) img = "https://via.placeholder.com/100";
+  let bio = prompt("Keterangan / Bio:");
 
-  // Tambah card baru
-  function addNewCard() {
-    let name = prompt("Nama anggota:");
-    if(!name) return;
-    let role = prompt("Jabatan / Divisi:");
-    if(!role) return;
-    let img = prompt("Link gambar (URL):", "https://via.placeholder.com/100");
-    if(!img) img = "https://via.placeholder.com/100";
-    let bio = prompt("Keterangan / Bio:");
+  const slider = document.getElementById('sliderDivisi');
+  const card = document.createElement('div');
+  card.classList.add('card', 'show');
+  card.onclick = () => openModal(name, role, img, bio);
+  card.innerHTML = `<img src="${img}" alt="${role}"><h3>${name}</h3><p>${role}</p>`;
 
-    const slider = document.getElementById('sliderDivisi');
+  const removeBtn = document.createElement('span');
+  removeBtn.textContent = '×';
+  removeBtn.classList.add('remove-btn');
+  removeBtn.onclick = (e) => {
+    e.stopPropagation();
+    removeCard(card, name);
+  };
+  card.appendChild(removeBtn);
+
+  slider.appendChild(card);
+
+  let savedCards = JSON.parse(localStorage.getItem('sliderCards')) || [];
+  savedCards.push({name, role, img, bio});
+  localStorage.setItem('sliderCards', JSON.stringify(savedCards));
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  let savedCards = JSON.parse(localStorage.getItem('sliderCards')) || [];
+  const slider = document.getElementById('sliderDivisi');
+  savedCards.forEach(c => {
     const card = document.createElement('div');
     card.classList.add('card', 'show');
-    card.onclick = () => openModal(name, role, img, bio);
-    card.innerHTML = `<img src="${img}" alt="${role}"><h3>${name}</h3><p>${role}</p>`;
+    card.onclick = () => openModal(c.name, c.role, c.img, c.bio);
+    card.innerHTML = `<img src="${c.img}" alt="${c.role}"><h3>${c.name}</h3><p>${c.role}</p>`;
 
-    // tombol hapus
     const removeBtn = document.createElement('span');
     removeBtn.textContent = '×';
     removeBtn.classList.add('remove-btn');
     removeBtn.onclick = (e) => {
       e.stopPropagation();
-      removeCard(card, name);
+      removeCard(card, c.name);
     };
     card.appendChild(removeBtn);
 
     slider.appendChild(card);
-
-    // Simpan ke localStorage
-    let savedCards = JSON.parse(localStorage.getItem('sliderCards')) || [];
-    savedCards.push({name, role, img, bio});
-    localStorage.setItem('sliderCards', JSON.stringify(savedCards));
-  }
-
-  // Load data dari localStorage saat halaman dibuka
-  window.addEventListener('DOMContentLoaded', () => {
-    let savedCards = JSON.parse(localStorage.getItem('sliderCards')) || [];
-    const slider = document.getElementById('sliderDivisi');
-    savedCards.forEach(c => {
-      const card = document.createElement('div');
-      card.classList.add('card', 'show');
-      card.onclick = () => openModal(c.name, c.role, c.img, c.bio);
-      card.innerHTML = `<img src="${c.img}" alt="${c.role}"><h3>${c.name}</h3><p>${c.role}</p>`;
-
-      // tombol hapus
-      const removeBtn = document.createElement('span');
-      removeBtn.textContent = '×';
-      removeBtn.classList.add('remove-btn');
-      removeBtn.onclick = (e) => {
-        e.stopPropagation();
-        removeCard(card, c.name);
-      };
-      card.appendChild(removeBtn);
-
-      slider.appendChild(card);
-    });
   });
+});
 </script>
 
 </body>
